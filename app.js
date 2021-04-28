@@ -4,7 +4,8 @@ var connection = mysql.createConnection({
   host: "ec2-13-125-221-229.ap-northeast-2.compute.amazonaws.com",
   user: "root",
   password: "root1234",
-  database: "board_db"
+  database: "board_db",
+  insecureAuth: true
 });
 
 connection.connect(function(err) {

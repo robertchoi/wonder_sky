@@ -1,3 +1,6 @@
+var fs = require('fs');
+var http = require('http');
+var ejs = require('ejs');    // npm install ejs
 const express = require("express");
 const bodyParser = require('body-parser');
 var mysql = require("mysql"); // mysql 모듈을 불러옵니다.
@@ -28,7 +31,17 @@ const port = 3001;
 app.set("port", port);
 
 app.get("/", (req, res) => {
-  res.send("Hello world!");
+  //res.send("Hello world!");
+    // 파일을 읽습니다.
+    fs.readFile('list.html', 'utf8', function (error, data) {
+      // 데이터베이스 쿼리를 실행합니다.
+      connection.query('SELECT * FROM score', function (error, results) {
+          // 응답합니다.
+          res.send(ejs.render(data, {
+              data: results
+          }));
+      });
+  });
 });
 
 

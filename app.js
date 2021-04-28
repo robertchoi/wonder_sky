@@ -1,5 +1,7 @@
 const express = require("express");
+const bodyParser = require('body-parser');
 var mysql = require("mysql"); // mysql 모듈을 불러옵니다.
+
 var connection = mysql.createConnection({
   host: "ec2-13-125-221-229.ap-northeast-2.compute.amazonaws.com",
   user: "root",

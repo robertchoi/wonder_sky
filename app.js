@@ -1,7 +1,7 @@
 const express = require("express");
 var mysql = require("mysql"); // mysql 모듈을 불러옵니다.
 var connection = mysql.createConnection({
-  host: "nodejs-rds.cir7ovuqdtc1.us-east-2.rds.amazonaws.com",
+  host: "ec2-13-125-221-229.ap-northeast-2.compute.amazonaws.com",
   user: "root",
   password: "root1234",
   database: "board_db"

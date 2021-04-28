@@ -35,7 +35,7 @@ app.get("/", (req, res) => {
 // Creating a GET route that returns data from the 'users' table.
 app.get('/score', function (req, res) {
   // Connecting to the database.
-  connection.getConnection(function (err, connection) {
+ //connection.getConnection(function (err, connection) {
 
   // Executing the MySQL query (select all data from the 'users' table).
   connection.query('SELECT * FROM score', function (error, results, fields) {
@@ -44,7 +44,7 @@ app.get('/score', function (req, res) {
 
     // Getting the 'response' from the database and sending it to our route. This is were the data is.
     res.send(results)
-  });
+  //});
 });
 });
 

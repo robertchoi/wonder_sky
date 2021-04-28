@@ -1,4 +1,22 @@
 const express = require("express");
+var mysql = require("mysql"); // mysql 모듈을 불러옵니다.
+var connection = mysql.createConnection({
+  host: "nodejs-rds.cir7ovuqdtc1.us-east-2.rds.amazonaws.com",
+  user: "root",
+  password: "root1234",
+  database: "board_db"
+});
+
+connection.connect(function(err) {
+  if (err) {
+    throw err; // 접속에 실패하면 에러를 throw 합니다.
+  } else {
+    // 접속시 쿼리를 보냅니다.
+    connection.query("SELECT * FROM score", function(err, rows, fields) {
+      console.log(rows); // 결과를 출력합니다!
+    });
+  }
+});
 
 const app = express();
 

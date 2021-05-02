@@ -1,5 +1,6 @@
 import pymysql
 import threading
+import time
 
 board_db = pymysql.connect(
     user='root', 
@@ -11,12 +12,17 @@ board_db = pymysql.connect(
 
 cursor = board_db.cursor(pymysql.cursors.DictCursor)
 sql = "select * from score_top2;"
+sql_truncate = "truncate score_top2;"
+sql_insert = "insert into score_top2(id, scoreValue) select id, sum(tagvalue)-99 from score group by id;"
 
 def startTimer():
     print("Timer")
     timer = threading.Timer(5, startTimer)
 
-
+    cursor.execute(sql_truncate)
+    time.sleep(1)
+    cursor.execute(sql_insert)
+    time.sleep(1)
     cursor.execute(sql)
 
     res = cursor.fetchall() 

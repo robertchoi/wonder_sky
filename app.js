@@ -44,6 +44,30 @@ app.get("/", (req, res) => {
   });
 });
 
+app.get("/top", (req, res) => {
+  //res.send("Hello world!");
+    // 파일을 읽습니다.
+    fs.readFile('list_top.html', 'utf8', function (error, data) {
+
+     // 데이터베이스 쿼리를 실행합니다.
+     connection.query('truncate score_top2', function (error, results) {
+     }); 
+
+      // 데이터베이스 쿼리를 실행합니다.
+      connection.query('insert into score_top2(id, scoreValue) select id, sum(tagvalue)-99 from score group by id', function (error, results) {
+      });      
+
+
+      // 데이터베이스 쿼리를 실행합니다.
+      connection.query('SELECT * FROM score_top2 order by scoreValue desc', function (error, results) {
+          // 응답합니다.
+          res.send(ejs.render(data, {
+              data: results
+          }));
+      });
+  });
+});
+
 
 // Creating a GET route that returns data from the 'users' table.
 app.get('/score', function (req, res) {

@@ -4,7 +4,9 @@ var ejs = require('ejs');    // npm install ejs
 const express = require("express");
 const bodyParser = require('body-parser');
 var mysql = require("mysql"); // mysql 모듈을 불러옵니다.
-const cors = require('cors'); // cors 추가
+const cors = require('cors')({
+  origin: true
+}); // cors 추가, origin : true 는 모든 요청 origin에 대한 허용상태임. 특정 ip만 허용시 ip주소 입력 ex) origin : "https://192.168.1.1"
 
 
 

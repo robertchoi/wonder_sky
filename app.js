@@ -4,7 +4,9 @@ var ejs = require('ejs');    // npm install ejs
 const express = require("express");
 const bodyParser = require('body-parser');
 var mysql = require("mysql"); // mysql 모듈을 불러옵니다.
-const cors = require('cors'); // cors 추가
+const cors = require('cors')({
+  origin: true
+}); // cors 추가
 
 
 
